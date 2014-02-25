@@ -1,5 +1,5 @@
 <?php
-    require 'include/init.php';
+    require 'app/init.php';
     if (isset($_REQUEST['go'])) $_SESSION['currentPage'] = $_REQUEST['go']; else $_SESSION['currentPage'] = 'index';
 ?>
 <!DOCTYPE html>
@@ -8,9 +8,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html>
-    <?php include 'include/views/head.tpl'; ?>
+    <?php include 'app/Views/head.tpl'; ?>
     <body data-page="<?php echo $_SESSION['currentPage'] ?>">
-        <?php include "include/views/header.tpl"; ?>
+        <?php include "app/Views/header.tpl"; ?>
         <div role="main" id="main" class="clearfix">
             <aside>
                 <ul>
@@ -22,7 +22,7 @@
                 <?php echo $_SESSION['main']->getList($_SESSION['currentPage']); ?>
             </section>
         </div>
-        <?php include "include/views/footer.tpl"; ?>
+        <?php include "app/Views/footer.tpl"; ?>
         <div class="popin-shadow"></div>
         <script type="text/javascript">
             var amapiensList = 
@@ -33,6 +33,6 @@
                 } else echo '"", token=' . json_encode($_SESSION);
             ?>;
         </script>
-        <?php include 'include/views/scripts.tpl'; ?>
+        <?php include 'app/Views/scripts.tpl'; ?>
     </body>
 </html>
