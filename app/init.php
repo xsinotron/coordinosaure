@@ -5,10 +5,10 @@ session_start();
 function init()
 {
     try {
-        if ( !isset($_SESSION['main']) )
+        if ( !isset($_SESSION['core']) )
         {
             /*
-            //echo 'main n existe pas, ';
+            //echo 'core n existe pas, ';
             $_SESSION['noUser'] = TRUE;
             if ( isset($_SESSION['userID'])
             &&         $_SESSION['userID'] != "" )
@@ -26,14 +26,14 @@ function init()
                         $profil = $strResults->userData;
                 }
                 $_SESSION['noUser'] = FALSE;
-                $_SESSION['main'] = new Main();
-                $_SESSION['main']->init($profil);
+                $_SESSION['core'] = new Core();
+                $_SESSION['core']->init($profil);
             }
             */
             $profil             = NULL;
             $_SESSION['noUser'] = FALSE;
-            $_SESSION['main']   = new Main();
-            $_SESSION['main']->init($profil);
+            $_SESSION['core']   = new Core();
+            $_SESSION['core']->init($profil);
         }
     }
     catch (Exception $error)

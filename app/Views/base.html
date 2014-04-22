@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+    {{{head}}}
+    <body data-page="{{currentPage}}">
+        <div id="mainModal" class="modal fade bs-example-modal-lg in">
+            <div class="modal-dialog modal-lg"></div>
+        </div>
+        {{{header}}}
+        {{{mainMenu}}}
+        <div role="main" id="main" class="clearfix">
+            <section class="data clearfix">
+                <h2>Interface de gestion : {{currentPage}}</h2>
+                {{{liste}}}
+            </section>
+        </div>
+        {{{footer}}}
+        <div class="popin-shadow"></div>
+        <script type="text/javascript">
+            var amapiensList = {{{amapiensList}}};
+        </script>
+        {{{scripts}}}
+    </body>
+</html>

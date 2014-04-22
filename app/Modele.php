@@ -1,8 +1,4 @@
 <?php
-    require dirname(__FILE__).'/vendor/Mustache/Autoloader.php';
-    Mustache_Autoloader::register();
-    require('DataTest.php');
-    require('Bdd.php');
 /**
  * Classe de Control
  */
@@ -369,6 +365,8 @@ class Modele {
     }
     public
     function gen($tpl,$data) {
+        require_once dirname(__FILE__).'/vendor/Mustache/Autoloader.php';
+        Mustache_Autoloader::register();
         $this->m = $this->mustache = new Mustache_Engine;
         return $this->m->render(file_get_contents($tpl), $data);
     }

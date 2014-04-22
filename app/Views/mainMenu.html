@@ -1,0 +1,27 @@
+<nav class="mainMenu btn-toolbar">
+    {{#nav}}
+        {{#isDropdown}}
+        <div class="btn-group dropdown">
+            <a class="btn {{#active}}active{{/active}}" type="button" href="{{link}}" title="{{title}}">{{text}}</a>
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                {{#dropdown}}
+                <li>
+                    <a href="{{action}}" class="{{class}}" id="{{id}}" title="{{title}}">
+                    {{text}}
+                    </a>
+                </li>
+                {{/dropdown}}
+            </ul>
+        </div>
+        {{/isDropdown}}
+        {{^isDropdown}}
+        <div class="btn-group">
+        <a class="btn" href="{{link}}" title="{{title}}">{{text}}</a>
+        </div>
+        {{/isDropdown}}
+    {{/nav}}
+</nav>

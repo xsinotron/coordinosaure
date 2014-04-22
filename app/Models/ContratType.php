@@ -23,12 +23,12 @@ class ContratType {
       //print_r($data);
         if (isset($data['mode'])) {
             if ($data['mode'] == 'new') {
-                $this->action = "core.php?insert=contrat_type";
+                $this->action = "raptor.php?insert=contrat_type";
             } else if ($data['mode'] == 'edit'){
-                $this->action = "core.php?edit=contrat_type";
+                $this->action = "raptor.php?edit=contrat_type";
                 $this->submit = "un beau contrat tout neuf";
             } else if ($data['mode'] == 'delete') {
-                $this->action = "core.php?delete=contrat_type";
+                $this->action = "raptor.php?delete=contrat_type";
                 $this->submit = "va-t-en!";
             } else {
                 // Par défaut

@@ -21,12 +21,12 @@ class Produit {
       //print_r($data);
         if (isset($data['mode'])) {
             if ($data['mode'] == 'new') {
-                $this->action = "core.php?insert=produit";
+                $this->action = "raptor.php?insert=produit";
             } else if ($data['mode'] == 'edit'){
-                $this->action = "core.php?edit=produit";
+                $this->action = "raptor.php?edit=produit";
                 $this->submit = "un beau contrat tout neuf";
             } else if ($data['mode'] == 'delete') {
-                $this->action = "core.php?delete=produit";
+                $this->action = "raptor.php?delete=produit";
                 $this->submit = "va-t-en!";
             } else {
                 // Par défaut

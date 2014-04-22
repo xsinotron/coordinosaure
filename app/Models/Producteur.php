@@ -20,12 +20,12 @@ class Producteur {
         //print_r($data);
         if (isset($data['mode'])) {
             if ($data['mode'] == 'new') {
-                $this->action = "core.php?insert=producteur";
+                $this->action = "raptor.php?insert=producteur";
             } else if ($data['mode'] == 'edit'){
-                $this->action = "core.php?edit=producteur";
+                $this->action = "raptor.php?edit=producteur";
                 $this->submit = "Te voilà un Amapien différent";
             } else if ($data['mode'] == 'delete') {
-                $this->action = "core.php?delete=producteur";
+                $this->action = "raptor.php?delete=producteur";
                 $this->submit = "Hors de ma vue, disparait!";
             } else {
                 // Par défaut

@@ -10,17 +10,42 @@ class MainMenu {
         array(
             "link"  => '?go=amapiens',
             "title" => 'Accédez à la liste des amapiens',
-            "text"  => 'Amapiens'
+            "text"  => 'Amapiens',
+            "isDropdown" => TRUE,
+            "dropdown" => array(
+                array(
+                    "class"  => "new",
+                    "action" => "raptor.php?amapien=new",
+                    "id"     => "add-new-amapien-button",
+                    "title"  => 'Créer un nouvel amapien',
+                    "text"   => 'Ajouter un amapien'
+                )
+            )
         ),
         array(
-            "link"  => '?go=contrats',
-            "title" => 'Accédez à la liste des contrats',
-            "text"  => 'Contrats'
+            "link"     => '?go=contrats',
+            "title"    => 'Accédez à la liste des contrats',
+            "text"     => 'Contrats',
+            "isDropdown" => TRUE,
+            "dropdown" => array(
+                array(
+                    "class" => "new",
+                    "action" => "#",
+                    "id" => "add-new-contrat-button",
+                    "title" => 'Ajouter un nouveau contrat à l\'amap.',
+                    "text"  => 'Ajouter un contrat'
+                )
+            )
         ),
         array(
             "link"  => '?go=producteurs',
             "title" => 'Accédez à la liste des producteurs',
             "text"  => 'Producteurs'
+        ),
+        array(
+            "link"  => '?go=produits',
+            "title" => 'Accédez à la liste des produits',
+            "text"  => 'Produits'
         )
     ),
     $actions = array(
@@ -29,7 +54,7 @@ class MainMenu {
             "action" => "#",
             "id"     => "add-new-producteur-button",
             "title"  => 'Ajouter un nouvel producteur à l\'amap',
-            "text"   => '+ producteur'
+            "text"   => 'Ajouter un producteur'
         ),
         array(
             "class"  => "new",
@@ -60,12 +85,13 @@ class MainMenu {
             "text"  => 'Imprimer un contrat'
         )
     );
-    function __construct () {
-        $this->current = $_SESSION['currentPage'];
-        if ($this->current === 'index')       $this->nav[0]['selected'] = 'selected';
-        if ($this->current === 'amapiens')    $this->nav[1]['selected'] = 'selected';
-        if ($this->current === 'contrats')    $this->nav[2]['selected'] = 'selected';
-        if ($this->current === 'producteurs') $this->nav[3]['selected'] = 'selected';
+    function __construct ($page) {
+        $this->current = $page;
+        if ($this->current == 'index')       $this->nav[0]['active'] = TRUE;
+        if ($this->current == 'amapiens')    $this->nav[1]['active'] = TRUE;
+        if ($this->current == 'contrats')    $this->nav[2]['active'] = TRUE;
+        if ($this->current == 'producteurs') $this->nav[3]['active'] = TRUE;
+        if ($this->current == 'produits')    $this->nav[4]['active'] = TRUE;
     }
 }
 ?>
