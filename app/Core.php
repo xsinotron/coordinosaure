@@ -240,7 +240,7 @@ class Core {
      * @return le contenu du formulaire demandé.
      */
     public function popin ($mode, $req) {
-        //print_r(array($mode, $req));
+        print_r(array($mode, $req));
         $data = array('mode' => $req[$mode]);
         if ($req[$mode] == "edit" || $req[$mode] == "delete") $data['content'] = $this->get($mode, $req['for']);
         switch ($mode) {

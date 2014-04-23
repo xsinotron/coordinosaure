@@ -42,12 +42,34 @@ class MainMenu {
         array(
             "link"  => '?go=producteurs',
             "title" => 'Accédez à la liste des producteurs',
-            "text"  => 'Producteurs'
+            "text"  => 'Producteurs',
+            "isDropdown" => TRUE,
+            "dropdown" => array(
+                array(
+                    "class"  => "new",
+                    "action" => "raptor.php?producteur=new",
+                    "modal"  => "#mainModal",
+                    "id"     => "add-new-producteur-button",
+                    "title"  => 'Créer un nouveau producteur',
+                    "text"   => 'Ajouter un producteur'
+                )
+            )
         ),
         array(
             "link"  => '?go=produits',
             "title" => 'Accédez à la liste des produits',
-            "text"  => 'Produits'
+            "text"  => 'Produits',
+            "isDropdown" => TRUE,
+            "dropdown" => array(
+                array(
+                    "class"  => "new",
+                    "action" => "raptor.php?produit=new",
+                    "modal"  => "#mainModal",
+                    "id"     => "add-new-produit-button",
+                    "title"  => 'Créer un nouveau produit',
+                    "text"   => 'Ajouter un produit'
+                )
+            )
         )
     ),
     $actions = array(

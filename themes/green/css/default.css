@@ -61,12 +61,11 @@ form li{display: list-item;float: left;list-style: decimal-leading-zero outside 
 textarea{display: block}
 /**
  * BUTTONS
- */
 a,
 a:visited,
 .button{cursor: pointer;border: 0;text-align: center;text-decoration: none;background-color: #2D2E30;border: medium none;color: #FFFFFF;font-family: 'NovecentowideBold';padding: 0 10px;
-/*FF CSS3*/-moz-transition: background-color 0.4s ease 0s;cursor: pointer;
-/*FF CSS3*/-webkit-transition: background-color 0.4s ease 0s;}
+-moz-transition: background-color 0.4s ease 0s;cursor: pointer;
+-webkit-transition: background-color 0.4s ease 0s;}
 a,
 a:visited,
 .button{display: inline-block;height: 30px;line-height: 30px;font-size: 0.68em;}
@@ -78,6 +77,7 @@ input.button:focus{background-color: #047A04;color: #FFFFFF}
 .button.button-validate{background: none repeat scroll 0 0 #3399FF;border-radius: 6px 6px 6px 6px;float: right;font-size: x-large;font-style: oblique;font-variant: small-caps;height: 45px;width: 100%;}
 .button.selected{background: #BCE5BC;color: #333333;cursor: default}
 .button.new{background-color: #080;padding: 2px 12px;margin: 0 0 0 2px;height: 24px;line-height: 24px;margin-top: 2px;}
+ */
 /**
  * CALENDARS
  */

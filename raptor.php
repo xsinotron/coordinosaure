@@ -21,11 +21,11 @@ if (isset($_REQUEST['list']))        echo $_SESSION['core']->getList($_REQUEST['
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// FORMULAIRES
 ///////////
-if (isset($_REQUEST['producteur']))  echo $_SESSION['core']->popin('producteur', $_REQUEST['producteur']);
-if (isset($_REQUEST['amapien']))     echo $_SESSION['core']->popin('amapien', $_REQUEST);
-if (isset($_REQUEST['contrat']))     echo $_SESSION['core']->popin('contrat', $_REQUEST['contrat']);
-if (isset($_REQUEST['contrat_type'])) echo $_SESSION['core']->popin('contrat_type', $_REQUEST['contrat_type']);
-if (isset($_REQUEST['produit']))     echo $_SESSION['core']->popin('produit', $_REQUEST['produit']);
+if (isset($_REQUEST['producteur']))   echo $_SESSION['core']->popin('producteur',   $_REQUEST);
+if (isset($_REQUEST['amapien']))      echo $_SESSION['core']->popin('amapien',      $_REQUEST);
+if (isset($_REQUEST['contrat']))      echo $_SESSION['core']->popin('contrat',      $_REQUEST);
+if (isset($_REQUEST['contrat_type'])) echo $_SESSION['core']->popin('contrat_type', $_REQUEST);
+if (isset($_REQUEST['produit']))      echo $_SESSION['core']->popin('produit',      $_REQUEST);
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// INFOS AMAPIEN

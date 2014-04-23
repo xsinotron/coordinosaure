@@ -1,5 +1,5 @@
-<form id="new-contrat" method="post" action="{{action}}">
-    <fieldset class="general">
+<form id="new-contrat" method="post" action="{{action}}" role="form">
+    <fieldset class="general" class="form-group">
         <legend>{{legend}}</legend>
         <input id="name" class="textfield" type="text" value="{{labelContrat}}" />
         <select id="producteur_id" class="">
@@ -16,5 +16,5 @@
         <label for="fin" class="">Fin</label>
         <input class="textfield datepick" type="text" id="fin" value="fin" placeholder="fin du contrat"/>
     </fieldset>
-    <input class="button button-validate" type="submit" id="createContract" value="{{submit}}"/>
+    <button class="btn btn-default" type="submit" id="createContract" title="{{submitTitle}}" >{{submit}}</button>
 </form>
