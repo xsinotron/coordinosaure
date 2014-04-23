@@ -16,6 +16,7 @@ class MainMenu {
                 array(
                     "class"  => "new",
                     "action" => "raptor.php?amapien=new",
+                    "modal"  => "#mainModal",
                     "id"     => "add-new-amapien-button",
                     "title"  => 'Créer un nouvel amapien',
                     "text"   => 'Ajouter un amapien'
@@ -30,7 +31,8 @@ class MainMenu {
             "dropdown" => array(
                 array(
                     "class" => "new",
-                    "action" => "#",
+                    "action" => "raptor.php?contrat=new",
+                    "modal"  => "#mainModal",
                     "id" => "add-new-contrat-button",
                     "title" => 'Ajouter un nouveau contrat à l\'amap.',
                     "text"  => 'Ajouter un contrat'

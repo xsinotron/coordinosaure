@@ -346,56 +346,12 @@
                     window.ui.content.update.liste.cheques($(this), $("#contrat-01-chequesNum ~ ul"));
                 });
                 // AJOUTER UN NOUVEAU
-                $('#add-new-producteur-button').click(function (ev) {
-                    $.ajax({
-                        dataType: 'html',
-                        url: 'raptor.php?producteur=new',
-                        success: function (popin) {
-                            $('body').prepend(popin);
-                            window.ui.form.producteur();
-                        }
-                    });
+                window.POPIN = "";
+                $('.mainMenu a[data-toggle]').off().on('click', function (e) {
+                    window.POPIN = $(this).attr('href');
                 });
-                var amapien = $('#add-new-amapien-button');
-                amapien.off().on('click', function (ev) {
-                    ev.preventDefault();
-                    amapien.on('show.bs.modal', function () {
-                        $('#mainModal > .modal-dialog').load(amapien.attr('href'))
-                    }).modal('show');
-                });
-                $('#add-new-contrat-button').click(function (ev) {
-                    $.ajax({
-                        dataType: 'html',
-                        url: 'raptor.php?contrat_type=new',
-                        success: function (popin) {
-                            console.info(popin);
-                            $('body').prepend(popin);
-                            window.ui.form.contrat();
-                        }
-                    });
-                });
-                $('table#mainListe .actions a').click(function (ev) {
-                    ev.preventDefault();
-                    $.ajax({
-                        dataType: 'html',
-                        url: $(ev.currentTarget).attr('href'),
-                        dataToSend: {id: $(ev.currentTarget).attr('amapien-id')},
-                        success: function (popin) {
-                            console.info(popin);
-                            $('body').prepend(popin);
-                            window.ui.form.amapien();
-                        }
-                    });
-                });
-                $('#add-new-produit-button').click(function (ev) {
-                    $.ajax({
-                        dataType: 'html',
-                        url: 'raptor.php?produit=new',
-                        success: function (popin) {
-                            $('body').prepend(popin);
-                            window.ui.form.produit();
-                        }
-                    });
+                $('#mainModal').on('show.bs.modal', function (e) {
+                    $('#mainModal > .modal-dialog').load(window.POPIN);
                 });
             };
             /**
