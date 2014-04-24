@@ -161,9 +161,12 @@ class Core {
             ));
         // INSERT
         } else if (isset($req['insert'])) {
+            $types = $req['insert'];
+            unset($req["insert"]);
+            $req['data'] = $req;
             $infos = $this->getReq(array(
                 'method' => 'insert',
-                'types'  => $req['insert'],
+                'types'  => $types,
                 'data'   => $req['data']
             ));
             echo $infos;

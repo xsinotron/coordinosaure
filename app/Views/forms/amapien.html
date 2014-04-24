@@ -1,52 +1,53 @@
 <!--h3>{{title}}</h3-->
-<form method="POST" action="{{action}}" role="form">
+<form method="GET" action="raptor.php" role="form">
     <div class="form-group">
         <legend>{{coord}}</legend>
         <div class="form-group col-md-12">
-            <input id="name"    {{disabled}} class="textfield form-control" type="text" value="{{name}}" placeholder="{{defaultname}}"/>
+            <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
+            <input name="name" {{disabled}} class="textfield form-control" type="text" value="{{name}}" placeholder="{{defaultname}}"/>
         </div>
         <div class="form-group col-md-12">
-            <input id="surname" {{disabled}} class="textfield form-control" type="text" value="{{surname}}" placeholder="{{defaultsurname}}"/>
+            <input name="surname" {{disabled}} class="textfield form-control" type="text" value="{{surname}}" placeholder="{{defaultsurname}}"/>
         </div>
-        <div class="input-group col-md-12">
+        <div class="form-group col-md-12">
             <input id="email1"  {{disabled}} class="emailValue textfield before form-control"         type="text" value="{{email1}}" placeholder="{{defaultemail}}"/>
-            <input id="email2"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email2}}" placeholder="{{defaultemail}}"/>
-            <input id="email3"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email3}}" placeholder="{{defaultemail}}"/>
-            <span id="addEmail-amapien" title="{{addTitle}}" {{disabled}} class="input-group-addon btn-primary glyphicon glyphicon-plus"></span>
+            <input name="email2"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email2}}" placeholder="{{defaultemail}}"/>
+            <input name="email3"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email3}}" placeholder="{{defaultemail}}"/>
+            <button class="btn btn-primary form-control" title="{{addTitle}}" {{disabled}} name="addEmail-amapien"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{addTitle}}</button>
         </div>
         <div class="form-group clearfix">
             <div class="col-md-6">
-                <input id="address" {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultaddress}}" value="{{address}}"/>
+                <input name="address" {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultaddress}}" value="{{address}}"/>
             </div>
             <div class="col-md-3">
-                <input id="zipcode" {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultzipcode}}" value="{{zipcode}}"/>
+                <input name="zipcode" {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultzipcode}}" value="{{zipcode}}"/>
             </div>
             <div class="col-md-3">
-                <input id="city"    {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultcity}}"    value="{{city}}"/>
+                <input name="city"    {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultcity}}"    value="{{city}}"/>
             </div>
         </div>
         <div class="form-group clearfix">
             <div class="col-md-6">
-                <input id="phone"   {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultphone}}" value="{{phone}}" />
+                <input name="phone"   {{disabled}} class="textfield form-control" type="text" placeholder="{{defaultphone}}" value="{{phone}}" />
             </div>
             <div class="col-md-6">
-                <input id="arrived" {{disabled}} class="textfield datepick form-control" type="text" placeholder="{{defaultarrived}}" value="{{arrived}}" />
+                <input name="arrived" {{disabled}} class="textfield datepick form-control" type="text" placeholder="{{defaultarrived}}" value="{{arrived}}" />
             </div>
         </div>
     </div>
     <div class="form-group">
         <legend>{{infos}}</legend>
-        <textarea id="infos" rows="6" class="form-control" >{{infosContent}}</textarea>
+        <textarea name="infos" rows="6" class="form-control" >{{infosContent}}</textarea>
         <div class="checkbox">
             <label for="updated" class="clear">
-                <input  id="updated" class="checkbox" type="checkbox" checked="checked" />{{updated}}
+                <input  name="updated" class="checkbox" type="checkbox" checked="checked" />{{updated}}
             </label>
         </div>
         <div class="checkbox">
             <label for="active" class="clear">
-                <input  id="active" class="checkbox" type="checkbox" checked="checked" />{{active}}
+                <input  name="active" class="checkbox" type="checkbox" checked="checked" />{{active}}
             </label>
         </div>
     </div>
-    <button class="btn btn-success" type="submit" id="createAmapien" title="{{submitTitle}}" >{{submit}}</button>
+    <button class="btn btn-success" type="submit" name="createAmapien" title="{{submitTitle}}" >{{submit}}</button>
 </form>

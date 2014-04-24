@@ -56,7 +56,10 @@ class Modele {
             }
             $i++;
         }
+        $params = preg_replace('/\,\s$/', '', $params);
+        $values = preg_replace('/\,\s$/', '', $values);
         $request .= " (" . $params . ") VALUES (".$values.");";
+        print_r($request);
         $result = $this->DB->req($request, 0);
         return $result;
     }
@@ -76,7 +79,9 @@ class Modele {
             }
             $i++;
         }
-        
+        $params = preg_replace('/\,\s$/', $params);
+        $values = preg_replace('/\,\s$/', $values);
+        echo $params;
         $request .= " (" . $params . ") VALUES (".$values.") WHERE id=" . $id . ";";
         $result = $this->DB->req($request, 0);
         return $result;
@@ -319,6 +324,7 @@ class Modele {
      */
     public
     function insertAmapien($amapien=array() ) {
+        print_r($amapien);
         $data = array();
         $params = '';
         $values = '';
@@ -350,6 +356,8 @@ class Modele {
                 "infos"   => "pas de contenu minimum"
             ));
         }
+        if (isset($amapien['updated'])) $amapien['updated'] = $amapien['updated'] === 'on';
+        if (isset($amapien['active']))  $amapien['active']  = $amapien['active']  === 'on';
         if ($isMin) $result_query = $this->insertData($amapien, 'amapiens');
         if ($result_query != FALSE) {
             return json_encode(array(

@@ -10,7 +10,7 @@ class Amapien {
     $surname     = "",
     $email       = "",
     $add         = "+",
-    $addTitle    = "+",
+    $addTitle    = "Ajouter un contact",
     $address     = "",
     $zipcode     = "",
     $city        = "",
@@ -34,7 +34,7 @@ class Amapien {
         //print_r($data);
         if (isset($data['mode'])) {
             if ($data['mode'] == 'new') {
-                $this->action = "raptor.php?insert=amapien";
+                $this->action = array("method"=>"insert", "table"=>"amapien");
             } else if ($data['mode'] == 'edit'){
               //print_r($data);
                 $this->title     = "Modifier l'amapien";
@@ -51,7 +51,7 @@ class Amapien {
                 $this->email1   = $data['content']->email1;
                 $this->email2   = $data['content']->email2;
                 $this->email3   = $data['content']->email3;
-                $this->action = "raptor.php?edit=amapien";
+                $this->action = array("method"=>"edit", "table"=>"amapien");
                 $this->submit = "Te voilà différent!";
             } else if ($data['mode'] == 'delete') {
                 $this->title  = "Supprimer l'amapien";
