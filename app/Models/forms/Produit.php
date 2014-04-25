@@ -11,7 +11,6 @@ class Produit {
     $labelPrix    = "Prix unitaire",
     $valuePrix    = "00.00€",
     $prix_unitaire,
-
     $id,
     $name,
     $contrat_id,

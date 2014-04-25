@@ -1,4 +1,4 @@
-<table class="tablesorter table table-striped" id="mainListe">
+<table class="tablesorter table table-striped table-hover" id="mainListe">
     <colgroup>
         <col style="width: auto"/>
         <col style="width: auto"/>
@@ -41,9 +41,9 @@
                 {{#contratsAmapien}}<span class="{{contratId}}">{{contratName}}</span>{{/contratsAmapien}}
             </td>
             <td class="actions">
-                <a class="modiAct" href="raptor.php?amapien=edit&for={{id}}">Modifier</a>
-                <a class="editAct" href="raptor.php?amapien=copy&for={{id}}">Dupliquer</a>
-                <a class="deleAct" href="raptor.php?amapien=delete&for={{id}}">Supprimer</a>
+                <a href="raptor.php?edit=amapien&id={{id}}" class="modify" title="{{{tModify}}}"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="raptor.php?copy=amapien&id={{id}}" class="duplic" title="{{{tDuplic}}}"><span class="glyphicon glyphicon-share-alt"></span></a>
+                <a href="raptor.php?dele=amapien&id={{id}}" class="delete" title="{{{tDelete}}}"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
         {{/list}}

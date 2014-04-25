@@ -1,20 +1,53 @@
-<form id="new-contrat" method="post" action="{{action}}" role="form">
-    <div class="general form-group">
+<form id="new-contrat" method="post" action="raptor.php" role="form">
+    <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
+    <div class="form-group">
         <legend>{{legend}}</legend>
-        <input id="name" class="textfield" type="text" value="{{labelContrat}}" />
-        <select id="producteur_id" class="">
-            <option value="O">{{labelProducteur}}</option>
-            {{#producteurs}}<option value="{{id}}">{{name}}, {{surname}}</option>{{/producteurs}}
-        </select>
-        <!--input type="button" value="ajouter un nouvel producteur" name="contrat_newProducteur"/--><br/>
-        <!--label for="nb_produits" class="clear">{{labelProd}}</label>
-        <select id="contrat_nb_produits" name="contrat_nb_produits" >
-            {{#nbProd}}<option>{{.}}</option>{{/nbProd}}
-        </select-->
-        <label for="debut" class="">Début</label>
-        <input class="textfield datepick" type="text" id="debut" value="début" placeholder="début du contrat"/>
-        <label for="fin" class="">Fin</label>
-        <input class="textfield datepick" type="text" id="fin" value="fin" placeholder="fin du contrat"/>
+        <div class="form-group clearfix">
+            <div class="col-md-6">
+                <input name="name" class="textfield form-control" type="text" value="{{labelContrat}}" />
+            </div>
+            <div class="col-md-6">
+                <select name="producteur_id" class="form-control">
+                    <option value="O">{{labelProducteur}}</option>
+                    {{#producteurs}}<option value="{{id}}">{{name}}, {{surname}}</option>{{/producteurs}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix">
+            <!--input type="button" value="ajouter un nouvel producteur" name="contrat_newProducteur"/--><br/>
+            <!--label for="nb_produits" class="clear">{{labelProd}}</label>
+            <select name="contrat_nb_produits" name="contrat_nb_produits" >
+                {{#nbProd}}<option>{{.}}</option>{{/nbProd}}
+            </select-->
+            <div class="col-md-6">
+                <label for="debut" class="">
+                    <span>Date de début :</span>
+                    <input class="textfield datepick form-control" type="date" name="debut" value="début" placeholder="début du contrat"/>
+                </label>
+            </div>
+            <div class="col-md-6">
+                <label for="fin" class="">
+                    <span>Date de Fin</span>
+                    <input class="textfield datepick form-control" type="date" name="fin" value="fin" placeholder="fin du contrat"/>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <label for="nb_distrib" class="">
+                    <span>{{lNb_distrib}}</span>
+                    <input class="textfield form-control" type="number" name="nb_distrib" value="{{nb_distrib}}" placeholder="{{pNb_distrib}}" title="{{tNb_distrib}}" />
+                </label>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-default" type="submit" id="createContractType" title="{{submitTitle}}" >{{submit}}</button>
+    <div class="form-group">
+        <legend>Produits</legend>
+        <div class="form-group col-md-12">
+            <select name="producteur_id" class="form-control">
+                <option value="O">{{lProduitType}}</option>
+                {{#produitType}}<option value="{{id}}">{{name}}</option>{{/produitType}}
+            </select>
+            <button class="btn btn-primary form-control" title="{{addTitle}}" {{disabled}} name="addEmail-amapien"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{addTitle}}</button>
+        </div>
+    </div>
+    <button class="btn btn-default form-control" type="submit" id="createContractType" title="{{submitTitle}}" >{{submit}}</button>
 </form>

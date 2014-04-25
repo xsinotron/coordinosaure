@@ -1,4 +1,4 @@
-<table class="tablesorter table table-striped" id="mainListe">
+<table class="tablesorter table table-striped table-hover" id="mainListe">
     <colgroup>
         <col style="width: auto"/>
         <col style="width: auto"/>
@@ -12,38 +12,26 @@
     <colgroup>
     <thead>
         <tr>
-            <th class="header">Amapien</th>
-            <th class="header">address</th>
-            <th class="header">Téléphone</th>
-            <th class="header">Date d'arrivée</th>
-            <th class="header">Contrats en cours</th>
-            <th class="header">À jour</th>
-            <th class="header">Email</th>
-            <th class="header">Email alt</th>
-            <th class="header">Email alt 2</th>
-            <th class="header">Plus d'infos</th>
+            <th class="header">Produit</th>
+            <th class="header">Contrat</th>
+            <th class="header">Prix Unitaire</th>
+            <th class="header">Existe</th>
             <th class="header">Actions</th>
         </tr>
     </thead>
     <tbody>
-        {{#entries}}
+        {{#list}}
         <tr>
-            <td class="header">{{name}}, {{surname}}</td>
-            <td class="header">{{address}} {{zipcode}} {{city}}</td>
-            <td class="header">{{phone}}</td>
-            <td class="header">{{arrived}}</td>
-            <td class="header">{{address}}</td>
-            <td class="header">{{updated}}</td>
-            <td class="header">{{email1}}</td>
-            <td class="header">{{email2}}</td>
-            <td class="header">{{email3}}</td>
-            <td class="header">{{infos}}</td>
-            <td class="header">
-                <a href="raptor.php?edit=amapien">Modifier</a>
-                <a href="raptor.php?copy=amapien">Dupliquer</a>
-                <a href="raptor.php?dele=amapien">Supprimer</a>
+            <td>{{contrat}}</td>
+            <td>{{name}}</td>
+            <td>{{prix_unitaire}}</td>
+            <td>{{exist}}</td>
+            <td>
+                <a href="raptor.php?edit=produits_type&id={{id}}" class="modify" title="{{{tModify}}}"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="raptor.php?copy=produits_type&id={{id}}" class="duplic" title="{{{tDuplic}}}"><span class="glyphicon glyphicon-share-alt"></span></a>
+                <a href="raptor.php?dele=produits_type&id={{id}}" class="delete" title="{{{tDelete}}}"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
-        {{/entries}}
+        {{/list}}
     </tbody>
 </table>

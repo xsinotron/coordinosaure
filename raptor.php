@@ -26,6 +26,7 @@ if (isset($_REQUEST['amapien']))      echo $_SESSION['core']->popin('amapien',  
 if (isset($_REQUEST['contrat']))      echo $_SESSION['core']->popin('contrat',      $_REQUEST);
 if (isset($_REQUEST['contrat_type'])) echo $_SESSION['core']->popin('contrat_type', $_REQUEST);
 if (isset($_REQUEST['produit']))      echo $_SESSION['core']->popin('produit',      $_REQUEST);
+if (isset($_REQUEST['produit_type'])) echo $_SESSION['core']->popin('produit_type', $_REQUEST);
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// INFOS AMAPIEN

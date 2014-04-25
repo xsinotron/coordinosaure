@@ -31,7 +31,7 @@ class MainMenu {
             "dropdown" => array(
                 array(
                     "class" => "new",
-                    "action" => "raptor.php?contrat=new",
+                    "action" => "raptor.php?contrat_type=new",
                     "modal"  => "#mainModal",
                     "id" => "add-new-contrat-button",
                     "title" => 'Ajouter un nouveau contrat à l\'amap.',
@@ -63,7 +63,7 @@ class MainMenu {
             "dropdown" => array(
                 array(
                     "class"  => "new",
-                    "action" => "raptor.php?produit=new",
+                    "action" => "raptor.php?produit_type=new",
                     "modal"  => "#mainModal",
                     "id"     => "add-new-produit-button",
                     "title"  => 'Créer un nouveau produit',

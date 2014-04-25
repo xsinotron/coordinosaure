@@ -34,8 +34,10 @@ class Core {
                     new Producteurs($liste)
                 );
                 break;
+            case 'produits_type':
             case 'produits':
-                $liste = $this->model->getProduits();
+                $liste = $this->model->getProduitsType();
+                print_r($liste);
                 $content = $this->model->gen(
                     'app/Views/tables/produits.html',
                     new Produits($liste)
@@ -90,6 +92,15 @@ class Core {
                     $data = $this->model->editProduit($params['for'], $params['data']);
                 } else if ($params['method'] == 'insert') {
                     $data = $this->model->insertProduit($params['data']);
+                }
+                break;
+            case 'produit_type':
+                if ($params['method'] == 'delete') {
+                    $data = $this->model->deleteProduitType($params['for']);
+                } else if ($params['method'] == 'edit') {
+                    $data = $this->model->editProduitType($params['for'], $params['data']);
+                } else if ($params['method'] == 'insert') {
+                    $data = $this->model->insertProduitType($params['data']);
                 }
                 break;
             case 'amapien':
@@ -249,12 +260,10 @@ class Core {
         switch ($mode) {
             case 'producteur':
                 $form = $this->model->gen(
-                'app/Views/forms/producteur.html',
-                new Producteur(
-                array("mode" => $req)
-                )
+                    'app/Views/forms/producteur.html',
+                    new Producteur($data)
                 );
-                $title = 'Nouveau producteur';
+                $title = 'Producteur : Nouveau';
                 break;
             case 'contrat':
                 $form = $this->model->gen(
@@ -266,45 +275,53 @@ class Core {
                 )
                 )
                 );
-                $title = 'Nouveau contrat';
+                $title = 'Contrat : Nouveau contrat amapien';
                 break;
             case 'contrat_type':
                 $form = $this->model->gen(
-                'app/Views/forms/contrat_type.html',
-                new ContratType(
-                array(
-                "mode"     => $req,
-                "producteurs" => $this->model->getProducteurs()
-                )
-                )
+                    'app/Views/forms/contrat_type.html',
+                    new ContratType($data)
                 );
-                $title = 'Nouveau contrat';
+                $title = 'Contrat : Nouveau type';
                 break;
             case 'produit':
                 $form = $this->model->gen(
-                'app/Views/forms/produit.html',
-                new Produit(
-                array(
-                "mode"     => $req,
-                "contrats" => $this->model->getContrats()
-                )
-                )
+                    'app/Views/forms/produit.html',
+                    new Produit(
+                        array(
+                            "mode"     => $req,
+                            "contrats" => $this->model->getContrats()
+                        )
+                    )
                 );
-                $title = 'Nouveau produit';
+                $title = 'Produit : Nouveau';
+                break;
+            case 'produit_type':
+                $form = $this->model->gen(
+                    'app/Views/forms/produit_type.html',
+                    new ProduitType(
+                        array(
+                            "mode"     => $req[$mode],
+                            "contrats" => $this->model->getContratsTypes()
+                        )
+                    )
+                );
+                $title = 'Produit : Nouveau type';
                 break;
             case 'amapien':
             default:
                 $form = $this->model->gen(
-                'app/Views/forms/amapien.html',
-                new Amapien($data)
+                    'app/Views/forms/amapien.html',
+                    new Amapien($data)
                 );
-                $title = 'Nouvel Amapien';
+                $title = 'Amapien : Nouveau';
                 break;
         }
         return $popin = $this->model->gen(
                 'app/Views/popin.html',
                 new Popin(array(
                         'title'   => $title,
+                        'mode'    => $req[$mode],
                         'content' => $form
                 ))
         );

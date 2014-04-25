@@ -1,13 +1,25 @@
-<form id="new-contrat" method="post" action="{{action}}" role="form"s>
-    <fieldset class="general form-group">
+<form id="new-contrat" method="post" action="raptor.php" role="form"s>
+    <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
+    <fieldset class="form-group">
         <legend>{{legend}}</legend>
-        <input id="name" class="textfield" type="text" value="{{labelProduit}}" />
-        <select id="contrat_id" class="">
-            <option value="-1">{{labelContrat}}</option>
-            {{#contrats}}<option value="{{id}}">{{name}}</option>{{/contrats}}
-        </select>
-        <label for="prix_unitaire" class="">{{labelPrix}}</label>
-        <input class="textfield" type="text" id="prix_unitaire" value="" placeholder="{{valuePrix}}"/>
+        <div class="form-group clearfix">
+            <div class="col-md-6">
+            <input id="name" class="textfield form-control" type="text" placeholder="{{defaultlabelProduit}}" value="{{labelProduit}}" />
+            </div>
+            <div class="col-md-6">
+                <select id="contrat_id"  class="form-control">
+                    <option value="-1">{{labelContrat}}</option>
+                    {{#contrats}}<option value="{{id}}">{{name}}</option>{{/contrats}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix">
+            <div class="col-md-12">
+                <label for="prix_unitaire" class="">
+                    {{labelPrix}} : <input class="textfield form-control" type="text" id="prix_unitaire" value="" placeholder="{{valuePrix}}"/>
+                </label>
+            </div>
+        </div>
     </fieldset>
     <button class="btn btn-default" type="submit" id="createProduct" title="{{submitTitle}}" >{{submit}}</button>
 </form>

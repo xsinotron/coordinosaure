@@ -1,0 +1,25 @@
+<form id="new-contrat" method="post" action="raptor.php" role="form">
+    <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
+    <fieldset class="form-group">
+        <legend>{{legend}}</legend>
+        <div class="form-group clearfix">
+            <div class="col-md-6">
+            <input name="name" class="textfield form-control" type="text" title="{{tName}}" placeholder="{{pName}}" value="{{name}}" />
+            </div>
+            <div class="col-md-6">
+                <select name="contrat_id"  class="form-control">
+                    <option value="-1">{{lContrat}}</option>
+                    {{#contrats}}<option value="{{id}}">{{name}}</option>{{/contrats}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix">
+            <div class="col-md-12">
+                <label for="prix_unitaire" class="">
+                    {{lPrix_unitaire}} : <input name="prix_unitaire" class="textfield form-control" type="text" value="{{prix_unitaire}}" title="{{tPrix_unitaire}}" placeholder="{{pPrix_unitaire}}"/>
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <button class="btn btn-default form-control" type="submit" id="createProduct" title="{{submitTitle}}" >{{submit}}</button>
+</form>

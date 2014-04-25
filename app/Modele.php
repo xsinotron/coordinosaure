@@ -237,6 +237,10 @@ class Modele {
     }
     public
     function getContrats () {
+        return $this->getList('contrats');
+    }
+    public
+    function getContratsTypes () {
         return $this->getList('contrats_type');
     }
     public
@@ -250,6 +254,10 @@ class Modele {
     public
     function getProduits () {
         return $this->getList('produits');
+    }
+    public
+    function getProduitsType () {
+        return $this->getList('produits_type');
     }
     public
     function getProducteurs () {
@@ -267,6 +275,20 @@ class Modele {
     public
     function insertProduit($params=array()) {
         return $this->insertData($params, 'produits');
+    }
+    // TODO supprimer ces étapes : inutiles!
+    // PRODUIT TYPE
+    public
+    function deleteProduitType ($id=''){
+        return $this->deleteEntry($id, 'produits_type');
+    }
+    public
+    function editProduitType ($id='', $params=array()) {
+        return $this->updateData($id, $params, 'produits_type');
+    }
+    public
+    function insertProduitType ($params=array()) {
+        return $this->insertData($params, 'produits_type');
     }
     // PRODUCTEUR
     public

@@ -1,18 +1,18 @@
 <!--h3>{{title}}</h3-->
 <form method="GET" action="raptor.php" role="form">
+    <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
     <div class="form-group">
         <legend>{{coord}}</legend>
         <div class="form-group col-md-12">
-            <input type="hidden" value="{{action.table}}" name="{{action.method}}"/>
             <input name="name" {{disabled}} class="textfield form-control" type="text" value="{{name}}" placeholder="{{defaultname}}"/>
         </div>
         <div class="form-group col-md-12">
             <input name="surname" {{disabled}} class="textfield form-control" type="text" value="{{surname}}" placeholder="{{defaultsurname}}"/>
         </div>
         <div class="form-group col-md-12">
-            <input id="email1"  {{disabled}} class="emailValue textfield before form-control"         type="text" value="{{email1}}" placeholder="{{defaultemail}}"/>
-            <input name="email2"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email2}}" placeholder="{{defaultemail}}"/>
-            <input name="email3"  {{disabled}} class="emailValue textfield before hidden form-control"  type="text" value="{{email3}}" placeholder="{{defaultemail}}"/>
+            <input name="email1" {{disabled}} class="emailValue textfield before form-control"        type="email" value="{{email1}}" placeholder="{{defaultemail}}"/>
+            <input name="email2" {{disabled}} class="emailValue textfield before hidden form-control" type="email" value="{{email2}}" placeholder="{{defaultemail}}"/>
+            <input name="email3" {{disabled}} class="emailValue textfield before hidden form-control" type="email" value="{{email3}}" placeholder="{{defaultemail}}"/>
             <button class="btn btn-primary form-control" title="{{addTitle}}" {{disabled}} name="addEmail-amapien"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{addTitle}}</button>
         </div>
         <div class="form-group clearfix">
