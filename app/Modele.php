@@ -4,10 +4,109 @@
  */
 class Modele {
     private
-    $debug = 0,
+    $debug = 1,
     $session,
     $DB,
-    $user;
+    $user,
+    $tables = array(
+        "amapiens" =>
+           "id       INT UNSIGNED auto_increment,
+            name     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            surname  VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            address  VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            zipcode  VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            city     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            email1   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            email2   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            email3   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            phone    VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            arrived  DATE,
+            updated  BOOLEAN,
+            active   BOOLEAN,
+            infos    VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "producteurs" =>
+           "id       INT UNSIGNED auto_increment,
+            name     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            surname  VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            email    VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            address  VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            zipcode  VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            city     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            phone    VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            infos    VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "contrats_type" =>
+           "id            INT UNSIGNED auto_increment,
+            name          VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            producteur_id INT,
+            debut         DATE,
+            fin           DATE,
+            PRIMARY KEY (id)",
+        "produits_type" =>
+           "id            INT UNSIGNED auto_increment,
+            name          VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            contrat_id    INT NOT NULL,
+            prix_unitaire FLOAT NOT NULL,
+            PRIMARY KEY (id)",
+        "contrats" =>
+           "id         INT UNSIGNED auto_increment,
+            amapien_id INT,
+            type_id    INT,
+            debut      DATE,
+            infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "produits" =>
+           "id         INT UNSIGNED auto_increment,
+            amapien_id INT NOT NULL,
+            distrib_id INT NOT NULL,
+            type_id    INT NOT NULL,
+            nb         FLOAT NOT NULL,
+            infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "lieux" =>
+           "id       INT UNSIGNED auto_increment,
+            name    VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            address VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            zipcode VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            city    VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            phone   VARCHAR(14) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            debut   TIME,
+            fin     TIME,
+            infos   VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        // une distribution est définie pour un contrat donné.
+        "distributions" =>
+           "id         INT UNSIGNED auto_increment,
+            lieux_id   INT,
+            contrat_id INT,
+            date       DATE,
+            debut      TIME,
+            fin        TIME,
+            infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "pauses" =>
+           "id         INT UNSIGNED auto_increment,
+            contrat_id INT, date DATE,
+            infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            PRIMARY KEY (id)",
+        "coordination" =>
+           "id         INT UNSIGNED auto_increment,
+            amapien_id INT,
+            contrat_id VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            email      VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            debut      DATE,
+            fin        DATE,
+            PRIMARY KEY (id)",
+        "paiements" =>
+           "id         INT UNSIGNED auto_increment,
+            amapien_id INT NOT NULL,
+            contrat_id INT NOT NULL,
+            somme      DOUBLE NOT NULL,
+            mode       VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'chèque' NOT NULL,
+            paye       BIT DEFAULT 0,
+            PRIMARY KEY (id)"
+    );
     public
     $m,
     $mustache;
@@ -35,7 +134,7 @@ class Modele {
         } else {
             return false;
         }
-        
+
     }
     protected
     function insertData ($data=array(), $table='') {
@@ -98,113 +197,14 @@ class Modele {
     }
     protected
     function createTables() {
-        $tables = array(
-            "amapiens" =>
-               "id       INT UNSIGNED auto_increment,
-                name     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-                surname  VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-                address  VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                zipcode  VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                city     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                email1   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                email2   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                email3   VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                phone    VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                arrived  DATE,
-                updated  BOOLEAN,
-                active   BOOLEAN,
-                infos    VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "producteurs" =>
-               "id       INT UNSIGNED auto_increment,
-                name     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-                surname  VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-                email    VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                address  VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                zipcode  VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                city     VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                phone    VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                infos    VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "contrats_type" =>
-               "id            INT UNSIGNED auto_increment,
-                name          VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-                producteur_id INT,
-                debut         DATE,
-                fin           DATE,
-                PRIMARY KEY (id)",
-            "produits_type" =>
-               "id            INT UNSIGNED auto_increment,
-                name          VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                contrat_id    INT NOT NULL,
-                prix_unitaire FLOAT NOT NULL,
-                PRIMARY KEY (id)",
-            "contrats" =>
-               "id         INT UNSIGNED auto_increment,
-                amapien_id INT,
-                type_id    INT,
-                debut      DATE,
-                infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "produits" =>
-               "id         INT UNSIGNED auto_increment,
-                amapien_id INT NOT NULL,
-                distrib_id INT NOT NULL,
-                type_id    INT NOT NULL,
-                nb         FLOAT NOT NULL,
-                infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "lieux" =>
-               "id       INT UNSIGNED auto_increment,
-                name    VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                address VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                zipcode VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                city    VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                phone   VARCHAR(14) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                debut   TIME,
-                fin     TIME,
-                infos   VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            // une distribution est définie pour un contrat donné. 
-            "distributions" =>
-               "id         INT UNSIGNED auto_increment,
-                lieux_id   INT,
-                contrat_id INT,
-                date       DATE,
-                debut      TIME,
-                fin        TIME,
-                infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "pauses" =>
-               "id         INT UNSIGNED auto_increment,
-                contrat_id INT, date DATE,
-                infos      VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                PRIMARY KEY (id)",
-            "coordination" =>
-               "id         INT UNSIGNED auto_increment,
-                amapien_id INT,
-                contrat_id VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                email      VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-                debut      DATE,
-                fin        DATE,
-                PRIMARY KEY (id)",
-            "paiements" =>
-               "id         INT UNSIGNED auto_increment,
-                amapien_id INT NOT NULL,
-                contrat_id INT NOT NULL,
-                somme      DOUBLE NOT NULL,
-                mode       VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'chèque' NOT NULL,
-                paye       BIT DEFAULT 0,
-                PRIMARY KEY (id)"
-        );
-        $request = '';
-        foreach($tables as $table => $fields) {
-            $req .= "CREATE TABLE " . $table . " (\n" . $fields . ");\n";
+        $req = "";
+        foreach($this->tables as $table => $fields) {
+            $req .= "CREATE TABLE IF NOT EXISTS " . $table . " (\n" . $fields . ");\n";
+            echo $req;
             $callback = $this->DB->req($req, 0);
             if ($callback == FALSE) return $callback;
         }
-        return $request;
-      //return $this->DB->req($request);
+        return $req;
     }
     protected function db_delete() {
         $req = "DROP TABLE `amapiens`, `contrats`, `contrats_type`, `coordination`, `distributions`, `lieux`, `paiements`, `pauses`, `producteurs`, `produits`, `produits_type`";
